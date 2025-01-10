@@ -107,6 +107,6 @@ function FinalPage() {
       </div>
     </div>
   );
-}
+} 
 
 export default FinalPage;

@@ -20,28 +20,28 @@ function MainPage() {
           </Canvas>
         </div>
         <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-2xl text-white">
+          <div className="max-w-2xl text-white text-center mx-auto">
             <h1 className="text-5xl font-bold mb-6 hover:text-red-500 transition-colors">
               Every Drop Counts. Be a Hero Today.
             </h1>
             <p className="text-xl mb-8 hover:text-gray-300 transition-colors">
               Your blood donation can save up to three lives. Join our mission to make a difference in someone's life.
             </p>
-            <button
-              className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold flex items-center gap-2 transition-colors"
-              onClick={() => navigate('/donate')}
-            >
-              Donate Now <ArrowRight className="w-5 h-5" />
-            </button>
-            
+            <div className="flex flex-wrap gap-4 justify-center">
+              <button
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold flex items-center gap-2 transition-colors"
+                onClick={() => navigate('/donate')}
+              >
+                Donate Now <ArrowRight className="w-5 h-5" />
+              </button>
+              <button
+                className="bg-white text-red-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 justify-center"
+                onClick={() => navigate('/donate-money')}
+              >
+                Donate Money
+              </button>
+            </div>
           </div>
-          <button
-  className="bg-white text-red-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 justify-center"
-  onClick={() => navigate('/donate-money')}
->
-  Donate Money
-</button>
-
         </div>
       </div>
 
