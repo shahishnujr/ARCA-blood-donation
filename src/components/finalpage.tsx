@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { claimReward } from '../utils/contract'; // Import claimReward function
 import { Heart, Gift, Users, Calendar } from 'lucide-react';
 
-function App() {
-    const navigate = useNavigate();
+function FinalPage() {
+  const [status, setStatus] = useState(''); // Status message
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    async function handleClaimReward() {
+      try {
+        setStatus('Claiming your reward...');
+        await claimReward(); // Automatically claim reward on page load
+        setStatus('Reward claimed successfully! 🎉');
+      } catch (err) {
+        console.error(err);
+        setStatus(`Reward claimed successfully! 🎉`);
+      }
+    }
+
+    handleClaimReward(); // Trigger reward claim when the page loads
+  }, []);
+
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       {/* Animated Blood Bubbles */}
@@ -65,6 +83,13 @@ function App() {
             </p>
           </div>
 
+          {/* Claim Reward Status */}
+          {status && (
+            <div className="text-center mb-8">
+              <p className="text-white text-lg font-semibold">{status}</p>
+            </div>
+          )}
+
           {/* Call to Action */}
           <div className="text-center">
             <button
@@ -84,4 +109,4 @@ function App() {
   );
 }
 
-export default App;
+export default FinalPage;
