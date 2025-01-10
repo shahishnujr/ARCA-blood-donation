@@ -1,0 +1,204 @@
+/* Import Tailwind CSS and fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.bubble {
+    position: absolute;
+    background: radial-gradient(circle at 60% 60%, rgba(255, 0, 0, 0.8), rgba(139, 0, 0, 0.4));
+    border-radius: 50%;
+    animation: float 6s infinite;
+    bottom: -100px;
+    width: 60px; /* Increased size */
+    height: 60px; /* Increased size */
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+    }
+    50% {
+      transform: translateY(-50vh) scale(1.2);
+      opacity: 0.6;
+    }
+    100% {
+      transform: translateY(-100vh) scale(1);
+      opacity: 0;
+    }
+  }
+
+/* Global Styles */
+body {
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  background: #000; /* Default for MainPage */
+}
+
+/* Blood Cells Animation (For MainPage) */
+.blood-cells {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(to bottom, transparent, #000);
+  perspective: 1500px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.blood-cell {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(
+    circle at 60% 60%,
+    rgba(255, 0, 0, 0.95),
+    rgba(180, 0, 0, 0.85) 50%,
+    rgba(120, 0, 0, 0.7) 100%
+  );
+  border-radius: 80%;
+  box-shadow: 
+    inset 3px 3px 8px rgba(255, 255, 255, 0.4),
+    inset -3px -3px 8px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(255, 0, 0, 0.4);
+  opacity: 0;
+  animation: float 12s infinite cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-style: preserve-3d;
+  filter: blur(0.5px);
+}
+
+@keyframes float {
+  0% {
+    transform: 
+      translateY(120vh)
+      translateX(calc(-50px + (100px * var(--random-x, 0.5))))
+      translateZ(-100px)
+      rotateX(45deg)
+      scale(0.8);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.9;
+  }
+  95% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: 
+      translateY(-20vh)
+      translateX(calc(50px - (100px * var(--random-x, 0.5))))
+      translateZ(300px)
+      rotateX(-15deg)
+      scale(0.3);
+    opacity: 0;
+  }
+}
+
+/* DonatePage Specific Styles */
+@layer base {
+  body {
+    background: #f8fafc; /* Light gray background for DonatePage */
+  }
+}
+
+@layer components {
+  .question-group {
+    @apply bg-white rounded-xl shadow-lg p-6 transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-1;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-red-600 mb-6 flex items-center gap-2;
+  }
+
+  .question-box {
+    @apply mb-6 last:mb-0 p-4 rounded-lg bg-gray-50 transform transition-all duration-300 hover:bg-red-50;
+  }
+
+  .question-text {
+    @apply block text-gray-900 font-medium mb-2;
+  }
+
+  .form-select {
+    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm 
+           focus:border-red-300 focus:ring focus:ring-red-200 
+           transition-all duration-300;
+  }
+
+  .form-input {
+    @apply block w-full rounded-md border-gray-300 shadow-sm 
+           focus:border-red-300 focus:ring focus:ring-red-200 
+           transition-all duration-300;
+  }
+
+  .submit-button {
+    @apply bg-red-600 text-white px-12 py-4 rounded-xl font-bold text-lg
+           shadow-lg transform transition-all duration-300
+           hover:bg-red-700 hover:scale-105 hover:shadow-xl
+           focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2;
+  }
+
+  .results-card {
+    @apply mt-8 p-8 rounded-xl shadow-lg transform transition-all duration-500 animate-fade-in;
+  }
+
+  .results-card.eligible {
+    @apply bg-green-50;
+  }
+
+  .results-card.ineligible {
+    @apply bg-red-50;
+  }
+}
+
+/* Fade-in Animation for Results */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+/* Additional Styling for Results Card */
+.results-card {
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.eligible {
+  border-color: green;
+}
+
+.ineligible {
+  border-color: red;
+}
+
+/* Submit Button Styling */
+.submit-btn {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+  background-color: darkgreen;
+}
