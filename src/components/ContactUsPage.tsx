@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Heart, Facebook, Twitter, Instagram } from 'lucide-react';
+import { Phone, Mail, MapPin, Heart, Facebook, Twitter, Instagram,Droplet } from 'lucide-react';
 
 function ContactUsPage() {
   return (
@@ -24,7 +24,7 @@ function ContactUsPage() {
       <div className="relative z-10 container mx-auto px-4 py-16">
         <div className="max-w-4xl mx-auto bg-white/10 backdrop-blur-lg rounded-2xl p-8 shadow-2xl">
           <div className="text-center mb-12">
-            <Heart className="w-16 h-16 text-red-600 mx-auto mb-4 animate-pulse" />
+            <Droplet className="w-16 h-16 text-red-600 mx-auto mb-4 animate-pulse" />
             <h1 className="text-4xl font-bold text-white mb-4 hover:text-red-500 transition-colors">
               Contact Us
             </h1>

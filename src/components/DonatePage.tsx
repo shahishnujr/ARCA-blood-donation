@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AlertCircle, Droplets, Heart } from 'lucide-react';
 
+
 interface FormData {
   [key: string]: string | boolean | null;
 }
@@ -39,6 +40,7 @@ function App() {
   };
   const navigate = useNavigate();
   return (
+    
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-12 transform hover:scale-105 transition-transform duration-300">
@@ -50,6 +52,7 @@ function App() {
           </h1>
           <p className="text-gray-600">Help save lives by checking if you're eligible to donate blood</p>
         </div>
+        
 
         <form onSubmit={handleSubmit} className="space-y-8">
           {/* Basic Information */}
