@@ -133,7 +133,7 @@ const abi =
 ];
 
 // Replace with your deployed contract address
-const contractAddress = "0x26e79390108B12102Df485D7Aa81523FbE3c54Cb";
+const contractAddress = "0x1cE0B8802ae6F16261fe3503792f292EE93b98C1";
 
 export const getContract = async () => {
   if (typeof window.ethereum === "undefined") {
