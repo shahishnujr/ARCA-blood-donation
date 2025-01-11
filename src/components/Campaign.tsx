@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Calendar, Clock, MapPin, Heart, Activity } from "lucide-react";
 import { donateEther } from "../utils/contract"; // Import the donateEther function
 
@@ -43,6 +43,23 @@ function App() {
   });
   const [amount, setAmount] = useState(""); // State for donation amount
   const [status, setStatus] = useState(""); // Status for feedback messages
+  const [bubbles, setBubbles] = useState<Array<{ id: number; left: number; delay: number; duration: number }>>([]);
+
+  useEffect(() => {
+    const generateBubbles = () => {
+      const newBubbles = Array.from({ length: 15 }, (_, i) => ({
+        id: i,
+        left: Math.random() * 100,
+        delay: Math.random() * 2,
+        duration: 8 + Math.random() * 7,
+      }));
+      setBubbles(newBubbles);
+    };
+
+    generateBubbles();
+    window.addEventListener("load", generateBubbles);
+    return () => window.removeEventListener("load", generateBubbles);
+  }, []);
 
   const handleVote = (campaignId: number) => {
     setStatus(`Processing your vote for Campaign #${campaignId}...`);
@@ -97,6 +114,22 @@ function App() {
 
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        {bubbles.map((bubble) => (
+          <div
+            key={bubble.id}
+            className="absolute w-8 h-8 bg-red-600 rounded-full opacity-50 animate-float"
+            style={{
+              left: `${bubble.left}%`,
+              animationDelay: `${bubble.delay}s`,
+              animationDuration: `${bubble.duration}s`,
+              transform: "translateZ(0)",
+            }}
+          />
+        ))}
+      </div>
+
       {/* Campaign Cards */}
       <div className="container mx-auto px-4 py-12">
         <h1 className="text-5xl font-bold text-center text-red-600 mb-8">Give Blood, Save Lives</h1>
