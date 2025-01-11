@@ -192,7 +192,7 @@ function App() {
                         ? votedFor === campaign.id
                           ? "Voted!"
                           : "Already Voted"
-                        : "Vote"}
+                        : " We support"}
                     </span>
                   </button>
                 </div>
