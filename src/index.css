@@ -4,7 +4,45 @@
 @tailwind components;
 @tailwind utilities;
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+@keyframes float {
+  0% {
+    transform: translateY(100vh) translateZ(0) scale(1);
+    opacity: 0;
+  }
+  50% {
+    transform: translateY(50vh) translateZ(100px) scale(1.2);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100px) translateZ(0) scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float linear infinite;
+  animation-duration: 10s;
+  will-change: transform;
+  perspective: 1000px;
+}
+
+.neon-hover {
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.neon-hover:hover {
+  border-color: #ef4444;
+  box-shadow: 
+    0 0 5px #ef4444,
+    0 0 10px #ef4444,
+    0 0 20px #ef4444;
+  text-shadow: 0 0 5px rgba(239, 68, 68, 0.5);
+}
 .bubble {
     position: absolute;
     background: radial-gradient(circle at 60% 60%, rgba(255, 0, 0, 0.8), rgba(139, 0, 0, 0.4));
@@ -85,6 +123,40 @@ body {
     opacity: 0;
   }
 }
+.blood-cell1 {
+  position: absolute;
+  width: 75px; /* Retaining reduced size */
+  height: 75px; /* Retaining reduced size */
+  background: radial-gradient(circle at 60% 60%, rgba(255, 0, 0, 1), rgba(180, 0, 0, 0.9) 50%, rgba(120, 0, 0, 0.8) 100%);
+  border-radius: 50%;
+  box-shadow:
+    inset 5px 5px 20px rgba(255, 255, 255, 0.3),
+    inset -5px -5px 20px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(255, 0, 0, 0.8); /* Enhanced shadow for better visual clarity */
+  opacity: 0;
+  animation: float 10s infinite ease-in-out; /* Keeping animation smooth and continuous */
+  transform-style: preserve-3d;
+  filter: blur(0px); /* No blur to enhance clarity */
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) scale(0.2); /* Starts smaller from below the screen */
+    opacity: 0;
+  }
+  25% {
+    opacity: 1; /* Peak visibility early */
+  }
+  75% {
+    opacity: 1; /* Maintain visibility while moving up */
+  }
+  100% {
+    transform: translateY(-100vh) scale(1); /* Ends slightly larger above the screen */
+    opacity: 0;
+  }
+}
+
+
 
 /* DonatePage Specific Styles */
 @layer base {

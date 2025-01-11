@@ -5,9 +5,14 @@ import { OrbitControls } from '@react-three/drei';
 import { Heart, Calendar, Phone, ArrowRight, Clock } from 'lucide-react';
 import { BloodAnimation } from './BloodAnimation';
 import { FooterAnimation } from './FooterAnimation';
+import { DNAAnimation } from './DNAAnimation';
 
 function MainPage() {
   const navigate = useNavigate();
+  const quickStats = {
+    totalDonorsLastMonth: 320,
+    livesSaved: 960
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 via-red-900 to-black">
@@ -17,6 +22,7 @@ function MainPage() {
           <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
             <OrbitControls enableZoom={false} enablePan={false} />
             <BloodAnimation />
+            <DNAAnimation />
           </Canvas>
         </div>
         <div className="container mx-auto px-6 relative z-10">
@@ -29,13 +35,13 @@ function MainPage() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <button
-                className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold flex items-center gap-2 transition-colors"
+                className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-semibold flex items-center gap-2 transition-all duration-300 transform hover:-translate-y-1 hover:scale-110"
                 onClick={() => navigate('/donate')}
               >
                 Donate Now <ArrowRight className="w-5 h-5" />
               </button>
               <button
-                className="bg-white text-red-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 justify-center"
+                className="bg-white text-red-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 hover:scale-110 flex items-center gap-2 justify-center"
                 onClick={() => navigate('/donate-money')}
               >
                 Donate Money
@@ -45,43 +51,50 @@ function MainPage() {
         </div>
       </div>
 
-      {/* Why Donate Section */}
       <div className="py-16 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold text-center mb-12 text-white hover:text-red-500 transition-colors">
-            Why Donate Blood?
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center text-white">
-              <Heart className="w-12 h-12 text-red-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2 hover:text-red-500 transition-colors">
-                Save Lives
-              </h3>
-              <p className="text-gray-400 hover:text-gray-200 transition-colors">
-                One donation can save up to three lives and help countless others.
-              </p>
-            </div>
-            <div className="text-center text-white">
-              <Clock className="w-12 h-12 text-red-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2 hover:text-red-500 transition-colors">
-                Quick & Easy
-              </h3>
-              <p className="text-gray-400 hover:text-gray-200 transition-colors">
-                The donation process takes less than an hour of your time.
-              </p>
-            </div>
-            <div className="text-center text-white">
-              <Calendar className="w-12 h-12 text-red-600 mx-auto mb-4" />
-              <h3 className="text-xl font-semibold mb-2 hover:text-red-500 transition-colors">
-                Regular Need
-              </h3>
-              <p className="text-gray-400 hover:text-gray-200 transition-colors">
-                Blood is needed every day for surgeries, treatments, and emergencies.
-              </p>
-            </div>
+      <div className="container mx-auto px-6">
+        <h2 className="text-3xl font-bold text-center mb-6 text-white hover:text-red-500 transition-colors">
+          Why Donate Blood?
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center text-white">
+          <div>
+            <Heart className="w-12 h-12 text-red-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2 hover:text-red-500 transition-colors">
+              Save Lives
+            </h3>
+            <p className="text-gray-400 hover:text-gray-200 transition-colors">
+              One donation can save up to three lives and help countless others.
+            </p>
+          </div>
+          <div>
+            <Clock className="w-12 h-12 text-red-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2 hover:text-red-500 transition-colors">
+              Quick & Easy
+            </h3>
+            <p className="text-gray-400 hover:text-gray-200 transition-colors">
+              The donation process takes less than an hour of your time.
+            </p>
+          </div>
+          <div>
+            <Calendar className="w-12 h-12 text-red-600 mx-auto mb-4" />
+            <h3 className="text-xl font-semibold mb-2 hover:text-red-500 transition-colors">
+              Regular Need
+            </h3>
+            <p className="text-gray-400 hover:text-gray-200 transition-colors">
+              Blood is needed every day for surgeries, treatments, and emergencies.
+            </p>
           </div>
         </div>
+        <div className="text-center mt-8">
+  <button 
+    className="px-6 py-3 text-white font-bold text-lg rounded-lg shadow-lg bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 transition-all duration-300 transform hover:-translate-y-1 hover:scale-110"
+    onClick={() => navigate('/campaign')}
+  >
+    View Campaigns
+  </button>
+</div>
       </div>
+    </div>
 
       {/* CTA Section */}
       <div className="bg-gradient-to-b from-red-900 to-black py-16">
@@ -94,13 +107,13 @@ function MainPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
-              className="bg-white text-red-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 justify-center"
+              className="bg-white text-red-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 hover:scale-110 flex items-center gap-2 justify-center"
               onClick={() => navigate('/donate')}
             >
               Schedule Appointment <Calendar className="w-5 h-5" />
             </button>
             <button
-              className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-red-700 transition-colors flex items-center gap-2 justify-center"
+              className="bg-white text-red-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 hover:scale-110 flex items-center gap-2 justify-center"
               onClick={() => navigate('/contact')}
             >
               Contact Us <Phone className="w-5 h-5" />

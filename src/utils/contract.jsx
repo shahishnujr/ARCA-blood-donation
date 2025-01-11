@@ -4,6 +4,17 @@ import { BrowserProvider, Contract, parseEther, formatEther } from "ethers";
 const abi = 
 [
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -15,7 +26,7 @@ const abi =
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "amount",
+				"name": "tokenAmount",
 				"type": "uint256"
 			}
 		],
@@ -105,11 +116,24 @@ const abi =
 		],
 		"stateMutability": "view",
 		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "rewardToken",
+		"outputs": [
+			{
+				"internalType": "contract IERC20",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
 	}
 ];
 
 // Replace with your deployed contract address
-const contractAddress = "0xbde2226A763C24D5A210Ca2cA6a902A2B8722a16";
+const contractAddress = "0x26e79390108B12102Df485D7Aa81523FbE3c54Cb";
 
 export const getContract = async () => {
   if (typeof window.ethereum === "undefined") {
